@@ -1,0 +1,317 @@
+/* --------------------------
+   RESPONSIVE DESIGN (Overriding Default Styles)
+   -------------------------- */
+
+/* Global Chart Height */
+.chart-container {
+    height: 400px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* =========================================
+   TABLET & SMALL LAPTOPS (Max Width: 1024px) 
+   ========================================= */
+@media screen and (max-width: 1024px) {
+
+    /* 1. GRIDS */
+    .analytics-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    /* Force Charts to 1 Column on Tablet */
+    .charts-grid {
+        display: grid;
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+        width: 100%;
+    }
+
+    .charts-grid>* {
+        grid-column: auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* 2. CHARTS */
+    .chart-container {
+        height: 350px !important;
+        width: 100% !important;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+
+    canvas {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    /* 3. TABLES - Enable Horizontal Scroll */
+    .table-container {
+        padding: 15px;
+        overflow-x: auto;
+        width: 100%;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+        min-width: 800px;
+        width: 100%;
+    }
+
+    table th,
+    table td {
+        white-space: nowrap;
+        padding: 12px 15px;
+    }
+
+    /* 4. SETTINGS - FLEXBOX FIX (Robust Stacking) */
+    .settings-container {
+        display: flex !important;
+        flex-direction: column !important;
+        grid-template-columns: none !important;
+        /* Reset grid */
+        gap: 20px;
+        width: 100% !important;
+    }
+
+    .settings-sidebar,
+    .settings-content {
+        width: 100% !important;
+        min-width: 0;
+    }
+
+    .settings-nav {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 12px;
+        margin-bottom: 25px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .settings-nav-item {
+        margin-right: 15px;
+        padding: 10px;
+        flex-shrink: 0;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.05);
+        /* Make visible */
+    }
+
+    .settings-nav-item.active {
+        background: rgba(59, 130, 246, 0.2);
+    }
+
+    .setting-input,
+    select,
+    textarea {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box;
+    }
+
+    /* Ensure Toggles in Tablet also wrap */
+    .setting-toggle {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 15px 0;
+        width: 100%;
+    }
+
+    .setting-toggle div:first-child {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .toggle-switch {
+        flex-shrink: 0;
+    }
+
+    .color-picker {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+}
+
+
+/* =========================================
+   MOBILE DEVICES (Max Width: 768px)
+   ========================================= */
+@media screen and (max-width: 768px) {
+
+    /* RESET */
+    body,
+    html {
+        overflow-x: hidden;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .app-container,
+    .dashboard {
+        display: block;
+        height: auto;
+        overflow-y: visible;
+        overflow-x: hidden;
+    }
+
+    /* NAVIGATION */
+    .mobile-menu-btn {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        color: #fff;
+        padding: 8px;
+        margin-right: 15px;
+        z-index: 1001;
+    }
+
+    /* SIDEBAR - OFF CANVAS */
+    #sidebar {
+        position: fixed;
+        left: -280px;
+        top: 0;
+        bottom: 0;
+        width: 280px;
+        height: 100vh;
+        z-index: 3000;
+        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
+        background: #1e293b;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #sidebar.show-mobile {
+        left: 0;
+    }
+
+    .sidebar .logo span,
+    .sidebar .label,
+    .sidebar .details {
+        display: inline-block !important;
+    }
+
+    #sidebar-toggle {
+        display: none !important;
+    }
+
+    #sidebar-close-btn {
+        display: flex !important;
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        border-radius: 5px;
+        padding: 5px;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .sidebar-header {
+        justify-content: space-between;
+        padding: 20px;
+    }
+
+    /* LAYOUT & HEADER */
+    .main-content {
+        margin-left: 0 !important;
+        width: 100%;
+        padding: 80px 15px 50px 15px;
+    }
+
+    header.navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        z-index: 900;
+        background: rgba(15, 23, 42, 0.98);
+        backdrop-filter: blur(15px);
+        padding: 0 15px;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        margin-top: 0 !important;
+    }
+
+    .header-content {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .search-bar {
+        display: none !important;
+    }
+
+    /* GRIDS - Force Single Column on Mobile */
+    .stats-grid,
+    .analytics-grid {
+        display: grid;
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+        width: 100%;
+    }
+
+    .charts-grid>*,
+    .stats-grid>*,
+    .analytics-grid>* {
+        grid-column: auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .table-filters {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .filter-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .filter-group input,
+    .filter-group select {
+        width: 100%;
+    }
+
+    /* MODALS */
+    .modal-content {
+        width: 95%;
+        margin: 10px;
+        padding: 0;
+    }
+
+    .modal-body {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-actions {
+        gap: 10px;
+    }
+
+    .primary-btn {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+}

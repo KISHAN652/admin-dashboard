@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexDash | Premium Admin Dashboard</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css?v=3">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="32" height="32" rx="8" fill="url(#logo_gradient)" />
+                        <path d="M10 10H22V14L16 20L10 14V10Z" fill="white" />
+                        <defs>
+                            <linearGradient id="logo_gradient" x1="0" y1="0" x2="32" y2="32"
+                                gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#3B82F6" />
+                                <stop offset="1" stop-color="#8B5CF6" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span>NexDash</span>
+                </div>
+                <button class="icon-btn sidebar-close-btn" id="sidebar-close-btn" style="display: none;">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+                <button class="toggle-btn" id="sidebar-toggle">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="20" x2="6" y2="20"></line>
+                        <line x1="18" y1="10" x2="6" y2="10"></line>
+                        <line x1="21" y1="15" x2="3" y2="15"></line>
+                        <line x1="21" y1="5" x2="3" y2="5"></line>
+                    </svg>
+                </button>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active" data-section="overview">
+                        <a href="#overview">
+                            <span class="icon">
+                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2"
+                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="3" width="7" height="7"></rect>
+                                    <rect x="14" y="3" width="7" height="7"></rect>
+                                    <rect x="14" y="14" width="7" height="7"></rect>
+                                    <rect x="3" y="14" width="7" height="7"></rect>
+                                </svg>
+                            </span>
+                            <span class="label">Overview</span>
+                        </a>
+                    </li>
+                    <li data-section="users">
+                        <a href="#users">
+                            <span class="icon">
+                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2"
+                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                            </span>
+                            <span class="label">Users</span>
+                        </a>
+                    </li>
+                    <li data-section="orders">
+                        <a href="#orders">
+                            <span class="icon">
+                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2"
+                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+                                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                                </svg>
+                            </span>
+                            <span class="label">Orders</span>
+                        </a>
+                    </li>
+                    <li data-section="analytics">
+                        <a href="#analytics">
+                            <span class="icon">
+                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2"
+                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="18" y1="20" x2="18" y2="10"></line>
+                                    <line x1="12" y1="20" x2="12" y2="4"></line>
+                                    <line x1="6" y1="20" x2="6" y2="14"></line>
+                                </svg>
+                            </span>
+                            <span class="label">Analytics</span>
+                        </a>
+                    </li>
+                    <li data-section="settings">
+                        <a href="#settings">
+                            <span class="icon">
+                                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2"
+                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                    <path
+                                        d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                                    </path>
+                                </svg>
+                            </span>
+                            <span class="label">Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <img src="https://ui-avatars.com/api/?name=Admin+User&background=3B82F6&color=fff" alt="Admin"
+                        class="avatar">
+                    <div class="details">
+                        <span class="name">Admin User</span>
+                        <span class="role">Super Admin</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Navbar -->
+            <header class="navbar">
+                <button class="mobile-menu-btn icon-btn" id="mobile-menu-btn"
+                    style="display: none; margin-right: 10px;">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+                <div class="search-bar">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input type="text" placeholder="Search anything...">
+                </div>
+                <div class="navbar-actions">
+                    <div class="notification-wrapper">
+                        <button class="icon-btn notification-btn" id="notification-btn">
+                            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2"
+                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                            </svg>
+                            <span class="badge">3</span>
+                        </button>
+                        <div class="notification-dropdown" id="notification-dropdown">
+                            <div class="dropdown-header">
+                                <h3>Notifications</h3>
+                                <button class="mark-read">Mark all as read</button>
+                            </div>
+                            <div class="notification-list">
+                                <div class="notification-item unread">
+                                    <div class="notif-icon success">
+                                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor"
+                                            stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                    </div>
+                                    <div class="notif-content">
+                                        <p><strong>New order received</strong></p>
+                                        <span>Order #ORD-7251 - $340.00</span>
+                                        <small>2 minutes ago</small>
+                                    </div>
+                                </div>
+                                <div class="notification-item unread">
+                                    <div class="notif-icon primary">
+                                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor"
+                                            stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                            <circle cx="8.5" cy="7" r="4"></circle>
+                                            <polyline points="17 11 19 13 23 9"></polyline>
+                                        </svg>
+                                    </div>
+                                    <div class="notif-content">
+                                        <p><strong>New user registered</strong></p>
+                                        <span>Michael Chen joined the platform</span>
+                                        <small>15 minutes ago</small>
+                                    </div>
+                                </div>
+                                <div class="notification-item unread">
+                                    <div class="notif-icon warning">
+                                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor"
+                                            stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path
+                                                d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                                            </path>
+                                            <line x1="12" y1="9" x2="12" y2="13"></line>
+                                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                        </svg>
+                                    </div>
+                                    <div class="notif-content">
+                                        <p><strong>Payment failed</strong></p>
+                                        <span>Order #ORD-7244 requires attention</span>
+                                        <small>1 hour ago</small>
+                                    </div>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="notif-icon primary">
+                                        <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor"
+                                            stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="18" y1="20" x2="18" y2="10"></line>
+                                            <line x1="12" y1="20" x2="12" y2="4"></line>
+                                            <line x1="6" y1="20" x2="6" y2="14"></line>
+                                        </svg>
+                                    </div>
+                                    <div class="notif-content">
+                                        <p><strong>Monthly report ready</strong></p>
+                                        <span>December analytics available</span>
+                                        <small>3 hours ago</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="dropdown-footer">
+                                <a href="#notifications">View all notifications</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-dropdown">
+                        <button class="profile-btn" id="profile-btn">
+                            <img src="https://ui-avatars.com/api/?name=Admin+User&background=3B82F6&color=fff"
+                                alt="Admin">
+                        </button>
+                        <div class="profile-menu" id="profile-menu">
+                            <div class="profile-header">
+                                <img src="https://ui-avatars.com/api/?name=Admin+User&background=3B82F6&color=fff"
+                                    alt="Admin">
+                                <div>
+                                    <strong>Admin User</strong>
+                                    <span>admin@nexdash.com</span>
+                                </div>
+                            </div>
+                            <div class="profile-menu-items">
+                                <a href="#profile">
+                                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor"
+                                        stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="12" cy="7" r="4"></circle>
+                                    </svg>
+                                    My Profile
+                                </a>
+                                <a href="#settings">
+                                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor"
+                                        stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                        <path
+                                            d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                                        </path>
+                                    </svg>
+                                    Settings
+                                </a>
+                                <a href="#help">
+                                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor"
+                                        stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                    </svg>
+                                    Help & Support
+                                </a>
+                                <hr>
+                                <a href="#logout" class="logout">
+                                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor"
+                                        stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                        <polyline points="16 17 21 12 16 7"></polyline>
+                                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                                    </svg>
+                                    Logout
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div id="content-area" class="content-area">
+                <!-- Overview Section -->
+                <section id="overview-section" class="content-section active">
+                    <div class="section-header">
+                        <h1>Dashboard Overview</h1>
+                        <p>Welcome back, Admin! Here's what's happening today.</p>
+                    </div>
+
+                    <!-- Stats Cards -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon users">
+                                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2"
+                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Total Users</h3>
+                                <div class="value counter" data-target="12450">0</div>
+                                <div class="trend up">
+                                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor"
+                                        stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                        <polyline points="17 6 23 6 23 12"></polyline>
+                                    </svg>
+                                    <span>+12.5%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon orders">
+                                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2"
+                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+                                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                                </svg>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Total Orders</h3>
+                                <div class="value counter" data-target="3840">0</div>
+                                <div class="trend up">
+                                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor"
+                                        stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                        <polyline points="17 6 23 6 23 12"></polyline>
+                                    </svg>
+                                    <span>+8.2%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon revenue">
+                                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2"
+                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="1" x2="12" y2="23"></line>
+                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                                </svg>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Total Revenue</h3>
+                                <div class="value">$<span class="counter" data-target="84250">0</span></div>
+                                <div class="trend up">
+                                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor"
+                                        stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                        <polyline points="17 6 23 6 23 12"></polyline>
+                                    </svg>
+                                    <span>+15.7%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon growth">
+                                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2"
+                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                    <polyline points="17 6 23 6 23 12"></polyline>
+                                </svg>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Growth Rate</h3>
+                                <div class="value counter" data-target="24">0</div>
+                                <div class="trend up">
+                                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor"
+                                        stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                        <polyline points="17 6 23 6 23 12"></polyline>
+                                    </svg>
+                                    <span>+4.1%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Charts Grid -->
+                    <div class="charts-grid">
+                        <div class="chart-container large">
+                            <div class="chart-header">
+                                <h2>Monthly Sales</h2>
+                                <div class="chart-actions">
+                                    <button class="active">Monthly</button>
+                                    <button>Weekly</button>
+                                </div>
+                            </div>
+                            <canvas id="salesChart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <div class="chart-header">
+                                <h2>User Growth</h2>
+                            </div>
+                            <canvas id="userGrowthChart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <div class="chart-header">
+                                <h2>Order Status</h2>
+                            </div>
+                            <canvas id="orderStatusChart"></canvas>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Users Section -->
+                <section id="users-section" class="content-section">
+                    <div class="section-header">
+                        <div class="title-group">
+                            <h1>Users Management</h1>
+                            <p>Manage and monitor your platform users.</p>
+                        </div>
+                        <div class="header-actions">
+                            <button class="primary-btn">
+                                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2"
+                                    fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                                Add User
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-filters">
+                            <div class="search-filter">
+                                <input type="text" id="user-search" placeholder="Search by name or email...">
+                            </div>
+                            <div class="filter-group">
+                                <select id="user-role-filter">
+                                    <option value="all">All Roles</option>
+                                    <option value="Admin">Admin</option>
+                                    <option value="Editor">Editor</option>
+                                    <option value="Viewer">Viewer</option>
+                                </select>
+                                <select id="user-status-filter">
+                                    <option value="all">All Status</option>
+                                    <option value="Active">Active</option>
+                                    <option value="Blocked">Blocked</option>
+                                </select>
+                            </div>
+                        </div>
+                        <table id="users-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- JS will populate this -->
+                            </tbody>
+                        </table>
+                        <div class="pagination" id="users-pagination">
+                            <!-- JS will populate this -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Orders Section -->
+                <section id="orders-section" class="content-section">
+                    <div class="section-header">
+                        <div class="title-group">
+                            <h1>Orders Management</h1>
+                            <p>Track and process customer orders.</p>
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <div class="table-filters">
+                            <div class="search-filter">
+                                <input type="text" id="order-search" placeholder="Search by Order ID or User...">
+                            </div>
+                            <div class="filter-group">
+                                <input type="date" id="order-date-filter">
+                                <select id="order-status-filter">
+                                    <option value="all">All Payments</option>
+                                    <option value="Paid">Paid</option>
+                                    <option value="Pending">Pending</option>
+                                    <option value="Failed">Failed</option>
+                                </select>
+                            </div>
+                        </div>
+                        <table id="orders-table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>User</th>
+                                    <th>Amount</th>
+                                    <th>Date</th>
+                                    <th>Payment</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- JS will populate this -->
+                            </tbody>
+                        </table>
+                        <div class="pagination" id="orders-pagination">
+                            <!-- JS will populate this -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Analytics Section -->
+                <section id="analytics-section" class="content-section">
+                    <div class="section-header">
+                        <div class="title-group">
+                            <h1>Advanced Analytics</h1>
+                            <p>Deep dive into your platform metrics and performance.</p>
+                        </div>
+                        <div class="header-actions">
+                            <select class="filter-select">
+                                <option>Last 7 days</option>
+                                <option>Last 30 days</option>
+                                <option>Last 3 months</option>
+                                <option>Last year</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="analytics-grid">
+                        <div class="analytics-card">
+                            <h3>Conversion Rate</h3>
+                            <div class="metric-value">3.24%</div>
+                            <div class="metric-change positive">+0.8% from last month</div>
+                            <div class="mini-chart">
+                                <canvas id="conversionChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="analytics-card">
+                            <h3>Avg. Order Value</h3>
+                            <div class="metric-value">$218.50</div>
+                            <div class="metric-change positive">+$12.30 from last month</div>
+                            <div class="mini-chart">
+                                <canvas id="aovChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="analytics-card">
+                            <h3>Customer Retention</h3>
+                            <div class="metric-value">68.5%</div>
+                            <div class="metric-change negative">-2.1% from last month</div>
+                            <div class="mini-chart">
+                                <canvas id="retentionChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="analytics-card">
+                            <h3>Active Sessions</h3>
+                            <div class="metric-value">1,247</div>
+                            <div class="metric-change positive">+156 from last hour</div>
+                            <div class="mini-chart">
+                                <canvas id="sessionsChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="charts-grid" style="margin-top: 30px;">
+                        <div class="chart-container large">
+                            <div class="chart-header">
+                                <h2>Revenue by Category</h2>
+                            </div>
+                            <canvas id="categoryRevenueChart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <div class="chart-header">
+                                <h2>Traffic Sources</h2>
+                            </div>
+                            <canvas id="trafficSourceChart"></canvas>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Settings Section -->
+                <section id="settings-section" class="content-section">
+                    <div class="section-header">
+                        <div class="title-group">
+                            <h1>Settings</h1>
+                            <p>Manage your dashboard preferences and configurations.</p>
+                        </div>
+                    </div>
+
+                    <div class="settings-container">
+                        <div class="settings-sidebar">
+                            <div class="settings-nav">
+                                <button class="settings-nav-item active" data-tab="general">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor"
+                                        stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                        <path
+                                            d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                                        </path>
+                                    </svg>
+                                    General
+                                </button>
+                                <button class="settings-nav-item" data-tab="notifications">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor"
+                                        stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                                    </svg>
+                                    Notifications
+                                </button>
+                                <button class="settings-nav-item" data-tab="security">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor"
+                                        stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                    </svg>
+                                    Security
+                                </button>
+                                <button class="settings-nav-item" data-tab="appearance">
+                                    <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor"
+                                        stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="5"></circle>
+                                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                                    </svg>
+                                    Appearance
+                                </button>
+                            </div>
+                        </div>
+                        <div class="settings-content">
+                            <div class="settings-tab active" id="general-tab">
+                                <h2>General Settings</h2>
+                                <div class="setting-group">
+                                    <label>Dashboard Name</label>
+                                    <input type="text" value="NexDash" class="setting-input" id="settings-dash-name">
+                                </div>
+                                <div class="setting-group">
+                                    <label>Time Zone</label>
+                                    <select class="setting-input" id="settings-timezone">
+                                        <option>UTC (GMT+0:00)</option>
+                                        <option selected>IST (GMT+5:30)</option>
+                                        <option>EST (GMT-5:00)</option>
+                                        <option>PST (GMT-8:00)</option>
+                                    </select>
+                                </div>
+                                <div class="setting-group">
+                                    <label>Language</label>
+                                    <select class="setting-input" id="settings-language">
+                                        <option selected>English</option>
+                                        <option>Spanish</option>
+                                        <option>French</option>
+                                        <option>German</option>
+                                    </select>
+                                </div>
+                                <button class="primary-btn" id="settings-general-save-btn">Save Changes</button>
+                            </div>
+                            <div class="settings-tab" id="notifications-tab">
+                                <h2>Notification Preferences</h2>
+                                <div class="setting-toggle">
+                                    <div>
+                                        <strong>Email Notifications</strong>
+                                        <p>Receive email updates about your account</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked id="settings-notif-email">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="setting-toggle">
+                                    <div>
+                                        <strong>Order Notifications</strong>
+                                        <p>Get notified when new orders are placed</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked id="settings-notif-order">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <div class="setting-toggle">
+                                    <div>
+                                        <strong>User Activity</strong>
+                                        <p>Notifications for new user registrations</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="settings-notif-user">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="settings-tab" id="security-tab">
+                                <h2>Security Settings</h2>
+                                <div class="setting-group">
+                                    <label>Current Password</label>
+                                    <input type="password" placeholder="Enter current password" class="setting-input"
+                                        id="settings-current-pass">
+                                </div>
+                                <div class="setting-group">
+                                    <label>New Password</label>
+                                    <input type="password" placeholder="Enter new password" class="setting-input"
+                                        id="settings-new-pass">
+                                </div>
+                                <div class="setting-group">
+                                    <label>Confirm Password</label>
+                                    <input type="password" placeholder="Confirm new password" class="setting-input"
+                                        id="settings-confirm-pass">
+                                </div>
+                                <button class="primary-btn" id="settings-update-pass-btn">Update Password</button>
+                                <hr style="margin: 30px 0; border-color: var(--border-color);">
+                                <div class="setting-toggle">
+                                    <div>
+                                        <strong>Two-Factor Authentication</strong>
+                                        <p>Add an extra layer of security to your account</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="settings-2fa">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="settings-tab" id="appearance-tab">
+                                <h2>Appearance Settings</h2>
+                                <div class="setting-group">
+                                    <label>Theme</label>
+                                    <select class="setting-input" id="settings-theme">
+                                        <option selected>Dark Mode</option>
+                                        <option>Light Mode</option>
+                                        <option>Auto (System)</option>
+                                    </select>
+                                </div>
+                                <div class="setting-group">
+                                    <label>Accent Color</label>
+                                    <div class="color-picker">
+                                        <button class="color-option active" style="background: #3B82F6;"
+                                            data-color="#3B82F6"></button>
+                                        <button class="color-option" style="background: #8B5CF6;"
+                                            data-color="#8B5CF6"></button>
+                                        <button class="color-option" style="background: #10B981;"
+                                            data-color="#10B981"></button>
+                                        <button class="color-option" style="background: #F59E0B;"
+                                            data-color="#F59E0B"></button>
+                                        <button class="color-option" style="background: #EF4444;"
+                                            data-color="#EF4444"></button>
+                                    </div>
+                                </div>
+                                <div class="setting-toggle">
+                                    <div>
+                                        <strong>Compact Mode</strong>
+                                        <p>Reduce spacing for a more compact layout</p>
+                                    </div>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="settings-compact">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add User Modal -->
+    <div class="modal" id="add-user-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New User</h2>
+                <button class="modal-close" id="close-modal">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="new-user-name" placeholder="Enter full name" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="new-user-email" placeholder="Enter email address" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label>Role</label>
+                    <select class="form-input" id="new-user-role">
+                        <option>Admin</option>
+                        <option selected>Editor</option>
+                        <option>Viewer</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Status</label>
+                    <select class="form-input" id="new-user-status">
+                        <option selected>Active</option>
+                        <option>Blocked</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="secondary-btn" id="cancel-modal">Cancel</button>
+                <button class="primary-btn" id="save-user">Add User</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Generic Confirmation/Alert Modal -->
+    <div class="modal" id="generic-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="generic-modal-title">Title</h2>
+                <button class="icon-btn" id="close-generic-modal">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="generic-modal-message">Message goes here.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="secondary-btn" id="generic-modal-cancel">Cancel</button>
+                <button class="primary-btn" id="generic-modal-confirm">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/tables.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
