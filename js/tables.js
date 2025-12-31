@@ -15,17 +15,17 @@ const renderUsers = (filteredUsers = dashboardData.users) => {
 
     tbody.innerHTML = paginatedItems.map(user => `
         <tr>
-            <td>${user.id}</td>
-            <td>
+            <td data-label="ID">${user.id}</td>
+            <td data-label="User">
                 <div class="user-info">
                     <img src="${user.avatar}" alt="${user.name}" class="avatar">
                     <span>${user.name}</span>
                 </div>
             </td>
-            <td>${user.email}</td>
-            <td>${user.role}</td>
-            <td><span class="status-badge ${user.status.toLowerCase()}">${user.status}</span></td>
-            <td>
+            <td data-label="Email">${user.email}</td>
+            <td data-label="Role">${user.role}</td>
+            <td data-label="Status"><span class="status-badge ${user.status.toLowerCase()}">${user.status}</span></td>
+            <td data-label="Actions">
                 <div class="table-actions">
                     <button class="action-btn edit-user-btn" data-user-id="${user.id}" title="Edit">
                         <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
@@ -54,12 +54,12 @@ const renderOrders = (filteredOrders = dashboardData.orders) => {
 
     tbody.innerHTML = paginatedItems.map(order => `
         <tr>
-            <td>${order.id}</td>
-            <td>${order.user}</td>
-            <td class="amount">${order.amount}</td>
-            <td>${order.date}</td>
-            <td><span class="status-badge ${order.status.toLowerCase()}">${order.status}</span></td>
-            <td>
+            <td data-label="Order ID">${order.id}</td>
+            <td data-label="User">${order.user}</td>
+            <td data-label="Amount" class="amount">${order.amount}</td>
+            <td data-label="Date">${order.date}</td>
+            <td data-label="Status"><span class="status-badge ${order.status.toLowerCase()}">${order.status}</span></td>
+            <td data-label="Actions">
                 <div class="table-actions">
                     <button class="action-btn" title="View Details">
                         <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>

@@ -48,7 +48,7 @@
         height: 100% !important;
     }
 
-    /* 3. TABLES - Enable Horizontal Scroll */
+    /* 3. TABLES - Tablet keeps Horizontal Scroll */
     .table-container {
         padding: 15px;
         overflow-x: auto;
@@ -69,12 +69,11 @@
         padding: 12px 15px;
     }
 
-    /* 4. SETTINGS - FLEXBOX FIX (Robust Stacking) */
+    /* 4. SETTINGS */
     .settings-container {
         display: flex !important;
         flex-direction: column !important;
         grid-template-columns: none !important;
-        /* Reset grid */
         gap: 20px;
         width: 100% !important;
     }
@@ -101,7 +100,6 @@
         flex-shrink: 0;
         border-radius: 8px;
         background: rgba(255, 255, 255, 0.05);
-        /* Make visible */
     }
 
     .settings-nav-item.active {
@@ -116,7 +114,6 @@
         box-sizing: border-box;
     }
 
-    /* Ensure Toggles in Tablet also wrap */
     .setting-toggle {
         display: flex;
         flex-direction: row;
@@ -179,7 +176,7 @@
         z-index: 1001;
     }
 
-    /* SIDEBAR - OFF CANVAS */
+    /* SIDEBAR */
     #sidebar {
         position: fixed;
         left: -280px;
@@ -205,10 +202,6 @@
         display: inline-block !important;
     }
 
-    #sidebar-toggle {
-        display: none !important;
-    }
-
     #sidebar-close-btn {
         display: flex !important;
         background: rgba(255, 255, 255, 0.1);
@@ -224,7 +217,7 @@
         padding: 20px;
     }
 
-    /* LAYOUT & HEADER */
+    /* LAYOUT & HEADER (FIXED) */
     .main-content {
         margin-left: 0 !important;
         width: 100%;
@@ -233,6 +226,7 @@
 
     header.navbar {
         position: fixed;
+        /* Restore fixed positioning */
         top: 0;
         left: 0;
         right: 0;
@@ -241,29 +235,19 @@
         background: rgba(15, 23, 42, 0.98);
         backdrop-filter: blur(15px);
         padding: 0 15px;
-        display: flex;
-        align-items: center;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         margin-top: 0 !important;
-    }
-
-    .header-content {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .search-bar {
         display: none !important;
     }
 
-    /* GRIDS - Force Single Column on Mobile */
+    /* GRIDS */
     .stats-grid,
-    .analytics-grid {
-        display: grid;
+    .analytics-grid,
+    .charts-grid {
         grid-template-columns: 1fr !important;
-        gap: 20px;
         width: 100%;
     }
 
@@ -272,20 +256,95 @@
     .analytics-grid>* {
         grid-column: auto !important;
         width: 100% !important;
-        max-width: 100% !important;
     }
 
-    .table-filters {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .filter-group {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
+    /* =========================================
+       TABLES -> STACKED CARD VIEW
+       ========================================= */
+    .table-container {
+        padding: 0;
+        overflow-x: visible;
         width: 100%;
+        border: none;
+        background: transparent;
+    }
+
+    table {
+        min-width: auto !important;
+        width: 100% !important;
+        display: block;
+    }
+
+    thead {
+        display: none;
+    }
+
+    tbody {
+        display: block;
+        width: 100%;
+    }
+
+    tr {
+        display: block;
+        margin-bottom: 20px;
+        background: rgba(30, 41, 59, 1);
+        /* Higher opacity for contrast */
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        /* Stronger border */
+        border-radius: 12px;
+        padding: 20px;
+    }
+
+    /* VERTICAL STACKING for cells */
+    td {
+        display: flex;
+        flex-direction: column;
+        /* Stack Label and Value Vertically */
+        align-items: flex-start;
+        text-align: left;
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        white-space: normal !important;
+        min-height: auto;
+    }
+
+    td:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    td::before {
+        content: attr(data-label);
+        display: block;
+        /* Ensure it is on its own line */
+        float: none;
+        margin-bottom: 5px;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.4);
+        text-transform: uppercase;
+        font-size: 0.75rem;
+    }
+
+    /* Handle specific cell types */
+    .user-info {
+        justify-content: flex-start;
+    }
+
+    td[data-label="Email"],
+    td[data-label="User"] {
+        word-break: break-word;
+        /* Ensure valid wrap */
+    }
+
+    /* Actions can remain horizontal for better UX */
+    td[data-label="Actions"] {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    td[data-label="Actions"]::before {
+        margin-right: 15px;
+        margin-bottom: 0;
     }
 
     .filter-group input,
@@ -293,15 +352,10 @@
         width: 100%;
     }
 
-    /* MODALS */
     .modal-content {
         width: 95%;
         margin: 10px;
         padding: 0;
-    }
-
-    .modal-body {
-        padding: 20px;
     }
 }
 
