@@ -22,7 +22,7 @@ NexDash is a modern, responsive Admin Dashboard designed for efficiency and aest
 1.  **Download the Project**:
     Clone the repository or download the ZIP file.
     ```bash
-    git clone https://github.com/your-repo/nexdash.git
+    git clone https://github.com/admin-dashboard/nexdash.git
     ```
 
 2.  **Navigate to Directory**:
